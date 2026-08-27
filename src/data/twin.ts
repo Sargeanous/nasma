@@ -80,7 +80,7 @@ const base: Omit<TwinPart, "health" | "ticket">[] = [
     zone: "minaret",
     name_en: "PA and adhan system",
     name_ar: "نظام الصوت والأذان",
-    pos: [1.5, 1.45, 0.85],
+    pos: [1.95, 1.45, 1.2],
     size: [0.16, 0.14, 0.16],
     detail_en: "Amplifier rack feeding the minaret horns and the internal speakers.",
     detail_ar: "مضخم صوت يغذي أبواق المئذنة والسماعات الداخلية.",

@@ -23,7 +23,7 @@ export default function TwinCanvas({
     <Canvas
       shadows={false}
       dpr={[1, 2]}
-      camera={{ position: [6.2, 4.4, 6.6], fov: 38 }}
+      camera={{ position: [6.4, 4.2, 7.2], fov: 34 }}
       style={{ height: "100%", width: "100%" }}
       gl={{ antialias: true }}
     >
@@ -134,7 +134,7 @@ function Scene({
       </mesh>
 
       {/* minaret */}
-      <group position={[1.5 * scale, 0, 0.85 * scale]}>
+      <group position={[1.95 * scale, 0, 1.2 * scale]}>
         <mesh position={[0, model.minaretHeight / 2, 0]}>
           <cylinderGeometry args={[0.13 * scale, 0.16 * scale, model.minaretHeight, 16]} />
           <meshStandardMaterial color={SHELL} transparent opacity={0.3} />

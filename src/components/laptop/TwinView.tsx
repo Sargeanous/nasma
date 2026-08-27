@@ -40,7 +40,7 @@ export function TwinView({
   return (
     <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
       <Card padded={false} className="relative overflow-hidden">
-        <div className="absolute inset-inline-start-3 bottom-3 z-20 rounded-[9px] border border-hairline bg-card/95 px-3 py-2">
+        <div className="absolute bottom-3 start-3 z-20 rounded-[9px] border border-hairline bg-card/95 px-3 py-2">
           <p className="mb-1.5 t-micro text-muted-ink">{t("LEGEND", "المفتاح")}</p>
           <ul className="space-y-1">
             {(["healthy", "warning", "faulty"] as const).map((h) => (
@@ -58,7 +58,7 @@ export function TwinView({
           </ul>
         </div>
 
-        <div className="absolute inset-inline-end-3 top-3 z-20 flex items-center gap-2">
+        <div className="absolute top-3 end-3 z-20 flex items-center gap-2">
           <label className="flex items-center gap-2 rounded-[9px] border border-hairline bg-card/95 px-3 py-2">
             <span className="t-caption text-muted-ink">{t("Open the roof", "فتح السقف")}</span>
             <input
@@ -88,7 +88,7 @@ export function TwinView({
         </div>
 
         {part ? (
-          <div className="absolute inset-inline-start-3 top-3 z-30 w-[340px] rounded-[16px] border border-hairline bg-card/97 p-4 shadow-soft">
+          <div className="absolute top-3 start-3 z-30 max-h-[calc(100%-1.5rem)] w-[340px] overflow-y-auto rounded-[16px] border border-hairline bg-card/97 p-4 shadow-soft">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="t-micro text-muted-ink">
