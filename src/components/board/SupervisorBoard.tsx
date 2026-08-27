@@ -270,7 +270,8 @@ function OrderRow({
   const [picking, setPicking] = useState(false);
   const m = mosque(order.mosque_id);
   const zone = zoneName(order.zone);
-  const owner = assignedTo ?? (order.assignee_en ? t(order.assignee_en, order.assignee_ar) : null);
+  const owner =
+    assignedTo ?? (order.assignee_en ? t(order.assignee_en, order.assignee_ar ?? "") : null);
 
   return (
     <Card className="p-3.5">
