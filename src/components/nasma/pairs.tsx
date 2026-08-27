@@ -92,7 +92,7 @@ export function Avatar({
 }) {
   const tones = {
     green: "bg-green/12 text-green border-green/25",
-    gold: "bg-gold/15 text-[oklch(0.44_0.09_79.6)] border-gold/30",
+    gold: "bg-gold/15 text-[oklch(0.38_0.09_79.6)] border-gold/30",
     deep: "bg-deep-green text-primary-foreground border-transparent",
   } as const;
   return (
