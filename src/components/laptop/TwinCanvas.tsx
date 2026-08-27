@@ -19,11 +19,12 @@ export default function TwinCanvas({
   roofOpen: number;
   lang: "en" | "ar";
 }) {
+  const fit = 0.72 + 0.6 * model.scale;
   return (
     <Canvas
       shadows={false}
       dpr={[1, 2]}
-      camera={{ position: [6.4, 4.2, 7.2], fov: 34 }}
+      camera={{ position: [6.4 * fit, 4.2 * fit, 7.2 * fit], fov: 34 }}
       style={{ height: "100%", width: "100%" }}
       gl={{ antialias: true }}
     >
@@ -40,10 +41,10 @@ export default function TwinCanvas({
       />
       <OrbitControls
         enablePan={false}
-        minDistance={5}
-        maxDistance={16}
+        minDistance={5 * fit}
+        maxDistance={16 * fit}
         maxPolarAngle={Math.PI / 2.15}
-        target={[0, 0.7, 0]}
+        target={[0.2 * model.scale, 0.7 * model.scale, 0]}
       />
     </Canvas>
   );
