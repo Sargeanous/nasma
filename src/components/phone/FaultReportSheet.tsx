@@ -288,8 +288,8 @@ export function FaultReportSheet({
       <div className="space-y-3">
         <div className="rounded-[12px] border border-gold/30 bg-gold/8 p-3">
           <div className="flex items-center gap-2">
-            <Sparkles className="size-4 stroke-[1.5] text-[oklch(0.52_0.09_79.6)]" aria-hidden="true" />
-            <span className="t-micro text-[oklch(0.52_0.09_79.6)]">
+            <Sparkles className="size-4 stroke-[1.5] text-[oklch(0.44_0.09_79.6)]" aria-hidden="true" />
+            <span className="t-micro text-[oklch(0.44_0.09_79.6)]">
               {t("Suggested from the photo", "اقتراح من الصورة")}
             </span>
             <BidiText className="ms-auto t-caption tnum text-muted-ink">

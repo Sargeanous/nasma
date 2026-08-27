@@ -73,7 +73,7 @@
   --sand-3: oklch(0.9358 0.0122 92.0); /* #EDEAE0 */
   --hairline: oklch(0.8759 0.0219 92.3); /* #DDD7C8 */
   --ink: oklch(0.2317 0.0088 152.3); /* #1B1E1C */
-  --muted-ink: oklch(0.5615 0.0154 84.6); /* #79756A */
+  --muted-ink: oklch(0.4900 0.0154 84.6); /* darkened for 4.5:1 on sand */
   --success: oklch(0.5074 0.1055 158.6); /* #1F7A4D */
   --warning: oklch(0.5678 0.1218 62.5); /* #B4690E */
   --alert: oklch(0.5162 0.1717 27.4); /* #B3372E */

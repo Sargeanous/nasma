@@ -28,7 +28,7 @@ const toneText: Record<Tone, string> = {
 const toneChip: Record<Tone, string> = {
   neutral: "border-hairline bg-sand-3 text-ink",
   green: "border-green/25 bg-green/10 text-green",
-  gold: "border-gold/30 bg-gold/10 text-[oklch(0.52_0.09_79.6)]",
+  gold: "border-gold/30 bg-gold/10 text-[oklch(0.44_0.09_79.6)]",
   success: "border-success/25 bg-success/10 text-success",
   warning: "border-warning/25 bg-warning/10 text-warning",
   alert: "border-alert/25 bg-alert/10 text-alert",
