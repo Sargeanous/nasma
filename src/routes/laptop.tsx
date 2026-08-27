@@ -8,18 +8,19 @@ import { MapView } from "@/components/laptop/MapView";
 import { MaintenanceView } from "@/components/laptop/MaintenanceView";
 import { CoolingView } from "@/components/laptop/CoolingView";
 import { AccessView } from "@/components/laptop/AccessView";
-import { EmptyState } from "@/components/nasma/primitives";
+import { TwinView } from "@/components/laptop/TwinView";
 import type { RoleId } from "@/data/types";
 
 const tabIds: TabId[] = ["fleet", "map", "maintenance", "twin", "cooling", "access"];
 
-type LaptopSearch = { role: RoleId; lang: Lang; tab: TabId };
+type LaptopSearch = { role: RoleId; lang: Lang; tab: TabId; mosque: string };
 
 export const Route = createFileRoute("/laptop")({
   validateSearch: (search: Record<string, unknown>): LaptopSearch => ({
     role: isRoleId(search["role"] as string) ? (search["role"] as RoleId) : "hq_admin",
     lang: search["lang"] === "ar" ? "ar" : "en",
     tab: tabIds.includes(search["tab"] as TabId) ? (search["tab"] as TabId) : "fleet",
+    mosque: typeof search["mosque"] === "string" ? (search["mosque"] as string) : "m-002",
   }),
   head: () => ({
     meta: [
@@ -39,7 +40,7 @@ export const Route = createFileRoute("/laptop")({
 });
 
 function LaptopSurface() {
-  const { role, lang, tab } = Route.useSearch();
+  const { role, lang, tab, mosque } = Route.useSearch();
   const navigate = Route.useNavigate();
   const { setLang, t } = useDirection();
   const { person } = sessionForRole(role);
@@ -58,18 +59,15 @@ function LaptopSurface() {
       onTab={(next) => go({ tab: next })}
       onSwitchLang={() => go({ lang: lang === "ar" ? "en" : "ar" })}
     >
-      {tab === "fleet" && <FleetOverview onOpenMosque={() => go({ tab: "twin" })} />}
-      {tab === "map" && <MapView onOpenMosque={() => go({ tab: "twin" })} />}
+      {tab === "fleet" && (
+        <FleetOverview onOpenMosque={(id: string) => go({ tab: "twin", mosque: id })} />
+      )}
+      {tab === "map" && <MapView onOpenMosque={(id) => go({ tab: "twin", mosque: id })} />}
       {tab === "maintenance" && <MaintenanceView />}
       {tab === "cooling" && <CoolingView />}
       {tab === "access" && <AccessView viewerRole={role} />}
       {tab === "twin" && (
-        <EmptyState
-          line={t(
-            "The mosque twin arrives in the next stage.",
-            "التوأم الرقمي للمسجد يصل في المرحلة القادمة.",
-          )}
-        />
+        <TwinView mosqueId={mosque} onMosque={(id) => go({ mosque: id })} />
       )}
     </LaptopShell>
   );
