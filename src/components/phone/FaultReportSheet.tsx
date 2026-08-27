@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   Camera,
   CheckCircle2,
-  Circle,
   Mic,
   RotateCcw,
   Sparkles,
@@ -13,7 +12,7 @@ import { BidiText } from "@/lib/bidi";
 import { useDirection } from "@/lib/direction";
 import { BottomSheet } from "@/components/nasma/BottomSheet";
 import { Button } from "@/components/nasma/Button";
-import { Chip, Meter } from "@/components/nasma/primitives";
+import { Meter } from "@/components/nasma/primitives";
 import { GeometricMark } from "@/components/nasma/GeometricMark";
 import { faultCategories, photoSuggestion } from "@/data/phone";
 import { zones } from "@/data/prayer";
@@ -412,5 +411,3 @@ function formatClock(total: number) {
   const s = String(total % 60).padStart(2, "0");
   return `${m}:${s}`;
 }
-
-export { Chip as _Chip };
