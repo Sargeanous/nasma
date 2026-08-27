@@ -102,8 +102,7 @@ export function CoolingView() {
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatTile
           label={t("Saving today", "التوفير اليوم")}
-          value={`${m.saving_kwh_day}`}
-          unit={t("kWh", "ك.و.س")}
+          value={`${m.saving_kwh_day} ${t("kWh", "ك.و.س")}`}
           tone="green"
         />
         <StatTile
