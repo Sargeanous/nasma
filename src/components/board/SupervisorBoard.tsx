@@ -191,7 +191,7 @@ export function SupervisorBoard({ person }: { person: Person }) {
 
         <div className="flex min-h-0 flex-1 flex-col">
           <PanelTitle>{t("Planned maintenance", "الصيانة الوقائية")}</PanelTitle>
-          <Card padded={false} className="min-h-0 flex-1 overflow-auto">
+          <Card padded={false} className="min-h-0 flex-1 overflow-auto" tabIndex={0}>
             <ul>
               {scopedPpm.map((item) => {
                 const m = mosque(item.mosque_id);

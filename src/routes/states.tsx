@@ -99,13 +99,13 @@ function StatesPage() {
   return (
     <div className="min-h-screen bg-sand">
       <SkipLink />
-      <header className="border-b border-hairline bg-green text-sand">
+      <header className="border-b border-hairline bg-card">
         <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 px-6 py-3">
           <Wordmark />
           <button
             type="button"
             onClick={() => setLang(lang === "en" ? "ar" : "en")}
-            className="rounded-[8px] border border-sand/30 px-2.5 py-1.5 t-label text-sand transition-calm hover:bg-sand/10"
+            className="rounded-[8px] border border-hairline px-2.5 py-1.5 t-label text-ink transition-calm hover:bg-sand-2"
           >
             {lang === "en" ? "ع" : "EN"}
           </button>
