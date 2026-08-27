@@ -37,10 +37,9 @@ export function KpiEvidenceSheet({
 
         <div className="min-h-0 flex-1 overflow-auto px-6 py-5">
           <div className="relative overflow-hidden rounded-[12px] border border-hairline bg-sand-2 p-5">
-            <GeometricMark
-              className="pointer-events-none absolute -end-6 -top-6 size-40 text-green/8"
-              aria-hidden="true"
-            />
+            <div className="pointer-events-none absolute -end-6 -top-6">
+              <GeometricMark size={160} opacity={0.08} />
+            </div>
             <p className="t-micro text-muted-ink">
               {t("Awqaf Abu Dhabi | Nasma", "أوقاف أبوظبي | نسمة")}
             </p>
