@@ -153,13 +153,12 @@ export function SupervisorBoard({ person }: { person: Person }) {
                     </div>
                     <p className="truncate t-caption text-muted-ink">
                       {t(member.trade_en, member.trade_ar)}
-                      {" | "}
-                      <BidiText>
-                        {t(
-                          `${member.mosques.length} mosques, ${member.radius_km} km`,
-                          `${member.mosques.length} مساجد، ${member.radius_km} كم`,
-                        )}
-                      </BidiText>
+                    </p>
+                    <p className="truncate t-caption text-muted-ink">
+                      {t(
+                        `${member.mosques.length} mosques | ${member.radius_km} km radius`,
+                        `${member.mosques.length} مساجد | نطاق ${member.radius_km} كم`,
+                      )}
                     </p>
                   </div>
                   <div className="w-20 shrink-0">
