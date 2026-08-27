@@ -92,7 +92,7 @@ export function TwinView({
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="t-micro text-muted-ink">
-                  {t(zoneName(part.zone).en, zoneName(part.zone).ar).toUpperCase()}
+                  {t(zoneName(part.zone).name_en, zoneName(part.zone).name_ar).toUpperCase()}
                 </p>
                 <h3 className="t-body font-medium text-ink">{t(part.name_en, part.name_ar)}</h3>
               </div>
@@ -265,7 +265,7 @@ export function TwinView({
                             {p.ticket.id} | {t(p.ticket.title_en, p.ticket.title_ar)}
                           </BidiText>
                         ) : (
-                          t(zoneName(p.zone).en, zoneName(p.zone).ar)
+                          t(zoneName(p.zone).name_en, zoneName(p.zone).name_ar)
                         )}
                       </span>
                     </span>
