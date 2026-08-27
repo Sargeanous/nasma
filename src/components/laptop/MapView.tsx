@@ -25,10 +25,10 @@ export function MapView({ onOpenMosque }: { onOpenMosque: (id: string) => void }
   return (
     <div className="grid gap-5 xl:grid-cols-[1fr_360px]">
       <Card padded={false} className="relative overflow-hidden">
-        <div className="absolute inset-inline-end-3 top-3 z-[500] rounded-[9px] border border-hairline bg-card/95 px-2.5 py-1.5 t-caption text-muted-ink">
+        <div className="absolute right-3 top-3 z-[500] rounded-[9px] border border-hairline bg-card/95 px-2.5 py-1.5 t-caption text-muted-ink">
           {t("3D twin arrives with PoP", "التوأم ثلاثي الأبعاد يصل مع النموذج الأولي")}
         </div>
-        <div className="absolute bottom-3 z-[500] rounded-[9px] border border-hairline bg-card/95 px-3 py-2 inset-inline-start-3">
+        <div className="absolute bottom-3 left-3 z-[500] rounded-[9px] border border-hairline bg-card/95 px-3 py-2">
           <p className="mb-1.5 t-micro text-muted-ink">{t("LEGEND", "المفتاح")}</p>
           <ul className="space-y-1">
             <li className="flex items-center gap-2 t-caption text-ink">
