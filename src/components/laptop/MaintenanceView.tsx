@@ -192,7 +192,6 @@ function QuadrantChart({
         viewBox={`0 0 ${W} ${H}`}
         className="w-full"
         role="img"
-        dir="ltr"
         aria-label={t(
           "Open tickets plotted by feasibility and impact.",
           "أوامر العمل المفتوحة مرسومة حسب قابلية التنفيذ والأثر.",
