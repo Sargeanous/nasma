@@ -32,15 +32,15 @@ export function MapView({ onOpenMosque }: { onOpenMosque: (id: string) => void }
           <p className="mb-1.5 t-micro text-muted-ink">{t("LEGEND", "المفتاح")}</p>
           <ul className="space-y-1">
             <li className="flex items-center gap-2 t-caption text-ink">
-              <Dot tone="alert" label={t("Needs attention", "يحتاج انتباها")} />
+              <Dot tone="alert" />
               {t("Needs attention", "يحتاج انتباها")}
             </li>
             <li className="flex items-center gap-2 t-caption text-ink">
-              <Dot tone="warning" label={t("Open work", "عمل مفتوح")} />
+              <Dot tone="warning" />
               {t("Open work", "عمل مفتوح")}
             </li>
             <li className="flex items-center gap-2 t-caption text-ink">
-              <Dot tone="success" label={t("Clear", "سليم")} />
+              <Dot tone="success" />
               {t("Clear", "سليم")}
             </li>
             <li className="pt-1 t-caption text-muted-ink">
