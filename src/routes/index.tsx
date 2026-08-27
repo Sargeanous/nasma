@@ -121,11 +121,13 @@ function AccessGate() {
                 </div>
 
                 <h2 className="mt-4 t-title text-ink">{t(role.name_en, role.name_ar)}</h2>
-                <p
-                  dir={lang === "ar" ? "ltr" : "rtl"}
-                  className={lang === "ar" ? "t-caption text-muted-ink" : "font-arabic t-caption text-muted-ink"}
-                >
-                  {lang === "ar" ? role.name_en : role.name_ar}
+                <p className="t-caption text-muted-ink">
+                  <span
+                    dir={lang === "ar" ? "ltr" : "rtl"}
+                    className={lang === "ar" ? "inline-block" : "font-arabic inline-block"}
+                  >
+                    {lang === "ar" ? role.name_en : role.name_ar}
+                  </span>
                 </p>
 
                 <p className="mt-2 flex-1 t-body-sm text-muted-ink">
