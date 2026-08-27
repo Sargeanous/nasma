@@ -5,6 +5,7 @@ import { SupervisorBoard } from "@/components/board/SupervisorBoard";
 import { useDirection, type Lang } from "@/lib/direction";
 import { isRoleId, sessionForRole } from "@/lib/session";
 import { portfolioFor } from "@/data/board";
+import { isolate } from "@/lib/bidi";
 import type { RoleId } from "@/data/types";
 
 type BoardSearch = { role: RoleId; lang: Lang };
@@ -48,7 +49,7 @@ function BoardSurface() {
       deviceLabel={t("FM SUPERVISOR", "مشرف الصيانة")}
       contractLine={t(
         `${person.contractor ?? ""} | ${count} mosques`,
-        `${person.contractor ?? ""} | ${count} مساجد`,
+        `${isolate(person.contractor ?? "")} | ${count} مساجد`,
       )}
       onSwitchLang={() =>
         navigate({ search: (prev) => ({ ...prev, lang: prev.lang === "ar" ? "en" : "ar" }) })
