@@ -1,69 +1,86 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { ChevronRight } from "lucide-react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import {
+  Book,
+  Building2,
+  ChevronRight,
+  ClipboardList,
+  Laptop,
+  Map,
+  Megaphone,
+  Monitor,
+  Smartphone,
+  SprayCan,
+  Tablet,
+  Wrench,
+} from "lucide-react";
+import type { ReactNode } from "react";
 import { Wordmark } from "@/components/nasma/Wordmark";
-import { GeometricMark } from "@/components/nasma/GeometricMark";
-import { BidiText } from "@/lib/bidi";
+import { DatePair } from "@/components/nasma/pairs";
+import { Chip } from "@/components/nasma/primitives";
 import { useDirection } from "@/lib/direction";
+import { roleCards, deviceLabels } from "@/data/roles";
+import { routeForRole } from "@/lib/session";
+import type { DeviceClass } from "@/data/types";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nasma Foundation - Tokens, Type and RTL" },
+      { title: "Nasma - Select a role to enter" },
       {
         name: "description",
         content:
-          "Stage one of Nasma: colour tokens, type scale, form language and bilingual RTL infrastructure for the Awqaf mosque operations platform.",
+          "Nasma, the mosque operations platform for Awqaf Abu Dhabi. Select a role to enter: HQ administrator, regional supervisor, FM contract supervisor, imam, muezzin, caretaker or FM technician.",
       },
-      { property: "og:title", content: "Nasma Foundation - Tokens, Type and RTL" },
+      { property: "og:title", content: "Nasma - Select a role to enter" },
       {
         property: "og:description",
-        content: "Colour tokens, type scale and bilingual RTL infrastructure for Nasma.",
+        content:
+          "Mosque operations for Awqaf Abu Dhabi. Each role opens on the device that job is actually done on.",
       },
     ],
   }),
-  component: Foundation,
+  component: AccessGate,
 });
 
-const palette = [
-  { name: "deep-green", hex: "#0A4239", cls: "bg-deep-green" },
-  { name: "green", hex: "#0E5E50", cls: "bg-green" },
-  { name: "gold", hex: "#B98A2F", cls: "bg-gold" },
-  { name: "gold-light", hex: "#CFA14C", cls: "bg-gold-light" },
-  { name: "sand", hex: "#F2EFE7", cls: "bg-sand" },
-  { name: "sand-2", hex: "#F4F1E9", cls: "bg-sand-2" },
-  { name: "sand-3", hex: "#EDEAE0", cls: "bg-sand-3" },
-  { name: "hairline", hex: "#DDD7C8", cls: "bg-hairline" },
-  { name: "ink", hex: "#1B1E1C", cls: "bg-ink" },
-  { name: "muted", hex: "#79756A", cls: "bg-muted-ink" },
-  { name: "success", hex: "#1F7A4D", cls: "bg-success" },
-  { name: "warning", hex: "#B4690E", cls: "bg-warning" },
-  { name: "alert", hex: "#B3372E", cls: "bg-alert" },
-];
+const icons: Record<string, ReactNode> = {
+  building: <Building2 className="size-5 stroke-[1.5]" aria-hidden="true" />,
+  map: <Map className="size-5 stroke-[1.5]" aria-hidden="true" />,
+  clipboard: <ClipboardList className="size-5 stroke-[1.5]" aria-hidden="true" />,
+  book: <Book className="size-5 stroke-[1.5]" aria-hidden="true" />,
+  megaphone: <Megaphone className="size-5 stroke-[1.5]" aria-hidden="true" />,
+  broom: <SprayCan className="size-5 stroke-[1.5]" aria-hidden="true" />,
+  wrench: <Wrench className="size-5 stroke-[1.5]" aria-hidden="true" />,
+};
 
-function Section({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <section className="border-t border-hairline pt-6">
-      <h2 className="t-micro text-muted-ink">{label}</h2>
-      <div className="mt-4">{children}</div>
-    </section>
-  );
-}
+const deviceIcons: Record<DeviceClass, ReactNode> = {
+  laptop: <Laptop className="size-3.5 stroke-[1.5]" aria-hidden="true" />,
+  ipad: <Tablet className="size-3.5 stroke-[1.5]" aria-hidden="true" />,
+  phone: <Smartphone className="size-3.5 stroke-[1.5]" aria-hidden="true" />,
+};
 
-function Foundation() {
-  const { lang, dir, toggleLang, t } = useDirection();
+function AccessGate() {
+  const { t, lang, toggleLang } = useDirection();
+  const navigate = useNavigate();
 
   return (
     <main className="min-h-screen bg-sand">
       <header className="border-b border-hairline bg-deep-green">
-        <div className="mx-auto flex max-w-[1000px] items-center justify-between px-6 py-4">
-          <Wordmark tone="light" />
-          <div className="flex items-center gap-3">
-            <span className="t-micro text-primary-foreground/70">
-              {t("Stage 1 - Foundation", "المرحلة الأولى - الأساس")}
+        <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-4 px-6 py-5">
+          <div className="flex items-center gap-4">
+            <Wordmark tone="light" size="lg" />
+            <span className="hidden h-7 w-px bg-primary-foreground/20 sm:block" aria-hidden="true" />
+            <span className="hidden t-caption text-primary-foreground/70 sm:block">
+              {t(
+                "Awqaf Abu Dhabi - mosque operations",
+                "أوقاف أبوظبي - تشغيل المساجد",
+              )}
             </span>
+          </div>
+          <div className="flex items-center gap-4">
+            <DatePair tone="light" align="end" />
             <button
               onClick={toggleLang}
-              className="rounded-[9px] border border-primary-foreground/30 px-3 py-1.5 t-body-sm text-primary-foreground transition-calm hover:bg-primary-foreground/10"
+              className="min-h-11 rounded-[9px] border border-primary-foreground/30 px-3 t-body-sm text-primary-foreground transition-calm hover:bg-primary-foreground/10"
             >
               {lang === "ar" ? "EN" : "ع"}
             </button>
@@ -71,139 +88,72 @@ function Foundation() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-[1000px] space-y-8 px-6 py-8">
-        <div className="relative overflow-hidden card-hairline p-6">
+      <div className="mx-auto max-w-[1180px] px-6 py-10">
+        <div className="relative overflow-hidden rounded-[16px] border border-hairline bg-card px-6 py-7">
           <div className="geo-watermark pointer-events-none absolute inset-0" aria-hidden="true" />
-          <div className="relative">
-            <h1 className="t-heading text-ink">
-              {t("Design tokens and RTL infrastructure", "الرموز التصميمية وبنية الاتجاه")}
-            </h1>
-            <p className="mt-2 max-w-[62ch] t-body text-muted-ink">
+          <div className="relative max-w-[70ch]">
+            <h1 className="t-heading text-ink">{t("Select a role to enter.", "اختر الدور للدخول.")}</h1>
+            <p className="mt-2 t-body text-muted-ink">
               {t(
-                "Institutional calm. Swiss information discipline in a Gulf palette. Every surface after this one draws from these tokens.",
-                "هدوء مؤسسي. انضباط المعلومات السويسري بلوحة ألوان خليجية. كل الشاشات تعتمد على هذه الرموز.",
+                "Access is enforced on the server, so the role decides what the platform returns, not just what it draws. Each role opens on the device that job is actually done on.",
+                "تُطبق الصلاحيات على الخادم، فالدور يحدد ما يعيده النظام لا ما يرسمه فقط. وكل دور يفتح على الجهاز الذي يُنجز عليه العمل فعلا.",
               )}
-            </p>
-            <p className="mt-3 t-body-sm text-muted-ink">
-              {t("Active direction", "الاتجاه الحالي")}: <BidiText>{dir.toUpperCase()}</BidiText>
             </p>
           </div>
         </div>
 
-        <Section label={t("Palette", "لوحة الألوان")}>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-            {palette.map((c) => (
-              <div key={c.name} className="card-hairline overflow-hidden">
-                <div className={`h-14 ${c.cls}`} />
-                <div className="border-t border-hairline px-2.5 py-2">
-                  <div className="t-caption text-ink">{c.name}</div>
-                  <BidiText className="t-caption text-muted-ink">{c.hex}</BidiText>
+        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {roleCards.map((role) => (
+            <li key={role.id}>
+              <button
+                type="button"
+                onClick={() => navigate({ to: routeForRole(role.id), search: { role: role.id } })}
+                className="group flex h-full w-full flex-col rounded-[16px] border border-hairline bg-card p-5 text-start shadow-soft transition-calm hover:border-green/40 hover:shadow-lift"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <span className="inline-flex size-10 items-center justify-center rounded-[9px] border border-green/20 bg-green/8 text-green">
+                    {icons[role.icon]}
+                  </span>
+                  <ChevronRight
+                    className="icon-directional mt-2 size-4 stroke-[1.5] text-muted-ink transition-calm group-hover:text-green"
+                    aria-hidden="true"
+                  />
                 </div>
-              </div>
-            ))}
-          </div>
-        </Section>
 
-        <Section label={t("Type scale", "مقياس الخط")}>
-          <div className="card-hairline divide-y divide-hairline">
-            {[
-              ["t-numeral-lg", "36 / 40", "1,482"],
-              ["t-numeral", "28 / 32", "AED 33,559"],
-              ["t-heading", "22 / 28", t("Fleet overview", "نظرة عامة على الأسطول")],
-              ["t-title", "17 / 24", t("Active work orders", "أوامر العمل النشطة")],
-              ["t-body", "15 / 24", t("Carpet water damage near entrance", "تلف مياه بالسجاد قرب المدخل")],
-              ["t-body-sm", "13 / 20", t("Technician assigned: Ramesh Kumar", "الفني المكلف: راميش كومار")],
-              ["t-caption", "12 / 18", t("Weather-normalised on cooling degree days", "معدلة حسب درجات التبريد")],
-              ["t-micro", "11 / 16", "SLA REMAINING"],
-            ].map(([cls, spec, sample]) => (
-              <div key={cls} className="flex items-baseline gap-4 px-4 py-3">
-                <BidiText className="w-28 shrink-0 t-caption text-muted-ink">{cls}</BidiText>
-                <BidiText className="w-16 shrink-0 t-caption text-muted-ink">{spec}</BidiText>
-                <span className={`${cls} text-ink`}>{sample}</span>
-              </div>
-            ))}
-          </div>
-          <p className="mt-3 t-caption text-muted-ink">
-            {t(
-              "Schibsted Grotesk for Latin, IBM Plex Sans Arabic for Arabic, Marcellus for the word Nasma only.",
-              "شبستد جروتسك للاتينية، آي بي إم بلكس سانس عربي للعربية، ومارسيلوس لكلمة نسمة فقط.",
-            )}
-          </p>
-        </Section>
+                <h2 className="mt-4 t-title text-ink">{t(role.name_en, role.name_ar)}</h2>
+                <p
+                  dir={lang === "ar" ? "ltr" : "rtl"}
+                  className={lang === "ar" ? "t-caption text-muted-ink" : "font-arabic t-caption text-muted-ink"}
+                >
+                  {lang === "ar" ? role.name_en : role.name_ar}
+                </p>
 
-        <Section label={t("Form language", "لغة الشكل")}>
-          <div className="grid gap-3 sm:grid-cols-3">
-            <div className="card-hairline p-4">
-              <div className="t-micro text-muted-ink">{t("Controls", "عناصر التحكم")}</div>
-              <button className="mt-3 min-h-11 w-full rounded-[9px] bg-deep-green px-4 t-body-sm font-medium text-primary-foreground transition-calm hover:bg-green">
-                {t("Confirm", "تأكيد")}
+                <p className="mt-2 flex-1 t-body-sm text-muted-ink">
+                  {t(role.does_en, role.does_ar)}
+                </p>
+
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <Chip tone="neutral">{t(role.scope_en, role.scope_ar)}</Chip>
+                  <Chip tone="green" icon={deviceIcons[role.device]}>
+                    {t(deviceLabels[role.device].en, deviceLabels[role.device].ar)}
+                  </Chip>
+                  <span className="ms-auto inline-flex items-center gap-1 t-caption font-medium text-green">
+                    {t("Enter", "دخول")}
+                    <ChevronRight className="icon-directional size-3.5 stroke-[1.5]" aria-hidden="true" />
+                  </span>
+                </div>
               </button>
-              <button className="mt-2 min-h-11 w-full rounded-[9px] border border-hairline bg-card px-4 t-body-sm text-ink transition-calm hover:bg-sand-3">
-                {t("Cancel", "إلغاء")}
-              </button>
-              <p className="mt-3 t-caption text-muted-ink">{t("Radius 9px", "نصف قطر ٩ بكسل")}</p>
-            </div>
-            <div className="card-hairline p-4 shadow-soft">
-              <div className="t-micro text-muted-ink">{t("Cards", "البطاقات")}</div>
-              <p className="mt-3 t-body-sm text-ink">
-                {t(
-                  "Radius 12 to 16px, elevation by 1px hairline plus a very soft shadow.",
-                  "نصف قطر ١٢ إلى ١٦ بكسل، والارتفاع عبر خط شعري وظل ناعم جدا.",
-                )}
-              </p>
-            </div>
-            <div className="card-hairline flex flex-col items-center justify-center gap-2 p-4">
-              <GeometricMark size={72} opacity={0.16} />
-              <p className="t-caption text-muted-ink">
-                {t("Empty-state mark", "علامة الحالة الفارغة")}
-              </p>
-            </div>
-          </div>
-        </Section>
+            </li>
+          ))}
+        </ul>
 
-        <Section label={t("Bidi isolation and mirroring", "عزل الاتجاه والانعكاس")}>
-          <div className="card-hairline space-y-3 p-4">
-            <p className="t-body text-ink">
-              {t("Ticket", "التذكرة")} <BidiText>t-1001</BidiText> {t("at", "في")}{" "}
-              <BidiText>12:27</BidiText>, <BidiText>SLA</BidiText>{" "}
-              <BidiText>5h</BidiText> {t("remaining, compliance", "متبقية، الالتزام")}{" "}
-              <BidiText>88%</BidiText>.
-            </p>
-            <p className="t-caption text-muted-ink">
-              {t(
-                "Latin runs are wrapped in U+2068 / U+2069 isolates so they hold position inside Arabic text.",
-                "النصوص اللاتينية معزولة برموز الاتجاه حتى تبقى في موضعها داخل النص العربي.",
-              )}
-            </p>
-            <div className="flex items-center gap-2 t-body-sm text-ink">
-              <span>{t("Directional icon mirrors", "الأيقونة الاتجاهية تنعكس")}</span>
-              <ChevronRight className="icon-directional size-4 stroke-[1.5]" aria-hidden="true" />
-            </div>
-          </div>
-        </Section>
-
-        <Section label={t("House rules", "قواعد الكتابة")}>
-          <ul className="card-hairline divide-y divide-hairline t-body-sm text-ink">
-            <li className="px-4 py-2.5">
-              {t(
-                "No em dashes, no en dashes, no middle dot. Hyphen or vertical bar only.",
-                "لا شرطات طويلة أو متوسطة أو نقطة وسطى. شرطة أو خط عمودي فقط.",
-              )}
-            </li>
-            <li className="px-4 py-2.5">
-              {t(
-                "Logical CSS only: margin-inline, padding-inline, inset-inline, text-align start and end.",
-                "خصائص منطقية فقط في التنسيق، دون يمين أو يسار.",
-              )}
-            </li>
-            <li className="px-4 py-2.5">
-              {t(
-                "Never encode meaning in colour alone. Every tone carries a label or an icon.",
-                "لا يُعبَّر عن المعنى باللون وحده. لكل حالة تسمية أو أيقونة.",
-              )}
-            </li>
-          </ul>
-        </Section>
+        <p className="mt-6 flex items-center gap-2 t-caption text-muted-ink">
+          <Monitor className="size-3.5 stroke-[1.5]" aria-hidden="true" />
+          {t(
+            "The device is a consequence of the role, not a separate choice. There is no password step in this build.",
+            "الجهاز نتيجة للدور وليس خيارا منفصلا. ولا توجد خطوة كلمة مرور في هذه النسخة.",
+          )}
+        </p>
       </div>
     </main>
   );
