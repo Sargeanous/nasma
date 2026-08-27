@@ -14,6 +14,7 @@ import { Route as BoardRouteImport } from './routes/board'
 import { Route as LaptopRouteImport } from './routes/laptop'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as PhoneRouteImport } from './routes/phone'
+import { Route as StatesRouteImport } from './routes/states'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const PhoneRoute = PhoneRouteImport.update({
   path: '/phone',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StatesRoute = StatesRouteImport.update({
+  id: '/states',
+  path: '/states',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/laptop': typeof LaptopRoute
   '/library': typeof LibraryRoute
   '/phone': typeof PhoneRoute
+  '/states': typeof StatesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/laptop': typeof LaptopRoute
   '/library': typeof LibraryRoute
   '/phone': typeof PhoneRoute
+  '/states': typeof StatesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,15 @@ export interface FileRoutesById {
   '/laptop': typeof LaptopRoute
   '/library': typeof LibraryRoute
   '/phone': typeof PhoneRoute
+  '/states': typeof StatesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/board' | '/laptop' | '/library' | '/phone'
+  fullPaths: '/' | '/board' | '/laptop' | '/library' | '/phone' | '/states'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/board' | '/laptop' | '/library' | '/phone'
-  id: '__root__' | '/' | '/board' | '/laptop' | '/library' | '/phone'
+  to: '/' | '/board' | '/laptop' | '/library' | '/phone' | '/states'
+  id:
+    '__root__' | '/' | '/board' | '/laptop' | '/library' | '/phone' | '/states'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +87,7 @@ export interface RootRouteChildren {
   LaptopRoute: typeof LaptopRoute
   LibraryRoute: typeof LibraryRoute
   PhoneRoute: typeof PhoneRoute
+  StatesRoute: typeof StatesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +127,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PhoneRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/states': {
+      id: '/states'
+      path: '/states'
+      fullPath: '/states'
+      preLoaderRoute: typeof StatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +143,7 @@ const rootRouteChildren: RootRouteChildren = {
   LaptopRoute: LaptopRoute,
   LibraryRoute: LibraryRoute,
   PhoneRoute: PhoneRoute,
+  StatesRoute: StatesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

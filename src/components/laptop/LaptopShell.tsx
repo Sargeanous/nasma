@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft } from "lucide-react";
+import { SkipLink } from "@/components/nasma/states";
 import { cn } from "@/lib/utils";
 import { useDirection } from "@/lib/direction";
 import { Wordmark } from "@/components/nasma/Wordmark";
@@ -35,6 +36,7 @@ export function LaptopShell({
 
   return (
     <div className="min-h-screen bg-sand">
+      <SkipLink />
       <header className="sticky top-0 z-40 bg-deep-green">
         <div className="mx-auto flex max-w-[1420px] items-center gap-6 px-6 py-2.5">
           <div className="flex items-center gap-3">
@@ -112,7 +114,7 @@ export function LaptopShell({
         </div>
       </header>
 
-      <main className="mx-auto max-w-[1420px] px-6 py-6">{children}</main>
+      <main id="main" className="mx-auto max-w-[1420px] px-6 py-6">{children}</main>
     </div>
   );
 }

@@ -58,7 +58,7 @@ export function PhoneFrame({
           </div>
         </header>
 
-        <main className="flex-1 space-y-3 px-4 pb-10 pt-3">{children}</main>
+        <main id="main" className="flex-1 space-y-3 px-4 pb-10 pt-3">{children}</main>
       </div>
     </div>
   );

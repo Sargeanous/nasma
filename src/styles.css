@@ -73,9 +73,9 @@
   --sand-3: oklch(0.9358 0.0122 92.0); /* #EDEAE0 */
   --hairline: oklch(0.8759 0.0219 92.3); /* #DDD7C8 */
   --ink: oklch(0.2317 0.0088 152.3); /* #1B1E1C */
-  --muted-ink: oklch(0.5615 0.0154 84.6); /* #79756A */
+  --muted-ink: oklch(0.4900 0.0154 84.6); /* darkened for 4.5:1 on sand */
   --success: oklch(0.5074 0.1055 158.6); /* #1F7A4D */
-  --warning: oklch(0.5678 0.1218 62.5); /* #B4690E */
+  --warning: oklch(0.4800 0.1218 62.5);
   --alert: oklch(0.5162 0.1717 27.4); /* #B3372E */
 
   /* Semantic mapping */
@@ -224,4 +224,29 @@
 
 @utility unicode-bidi-isolate {
   unicode-bidi: isolate;
+}
+
+/* Focus is always visible and never colour-only */
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Respect reduced motion across every surface */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Comfortable minimum target on touch surfaces */
+@utility tap-target {
+  min-height: 44px;
+  min-width: 44px;
 }
