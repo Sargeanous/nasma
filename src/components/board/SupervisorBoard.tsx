@@ -247,7 +247,7 @@ export function SupervisorBoard({ person }: { person: Person }) {
         <KpiEvidenceSheet
           onClose={() => setEvidenceOpen(false)}
           supervisor={t(person.name_en, person.name_ar)}
-          contractor={t(person.contractor ?? "", person.contractor ?? "")}
+          contractor={person.contractor ?? ""}
           mosqueCount={scopeIds.length}
         />
       ) : null}
@@ -263,7 +263,7 @@ function OrderRow({
 }: {
   order: WorkOrder;
   team: ReturnType<typeof crewFor>;
-  assignedTo?: string;
+  assignedTo?: string | undefined;
   onAssign: (name: string) => void;
 }) {
   const { t } = useDirection();
@@ -286,7 +286,7 @@ function OrderRow({
           <p className="t-caption text-muted-ink">
             {t(m.name_en, m.name_ar)}
             {" | "}
-            {t(zone.en, zone.ar)}
+            {t(zone.name_en, zone.name_ar)}
             {" | "}
             {t(m.district, m.district_ar)}
           </p>
