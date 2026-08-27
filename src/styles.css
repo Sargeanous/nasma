@@ -225,3 +225,28 @@
 @utility unicode-bidi-isolate {
   unicode-bidi: isolate;
 }
+
+/* Focus is always visible and never colour-only */
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Respect reduced motion across every surface */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Comfortable minimum target on touch surfaces */
+@utility tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
