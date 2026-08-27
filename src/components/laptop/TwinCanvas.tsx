@@ -11,11 +11,13 @@ export default function TwinCanvas({
   selected,
   onSelect,
   roofOpen,
+  lang,
 }: {
   model: TwinModel;
   selected: PartKind | null;
   onSelect: (id: PartKind | null) => void;
   roofOpen: number;
+  lang: "en" | "ar";
 }) {
   return (
     <Canvas
@@ -29,7 +31,13 @@ export default function TwinCanvas({
       <hemisphereLight args={["#FFF6E2", "#CFC7B2", 1.1]} />
       <directionalLight position={[6, 9, 5]} intensity={1.1} />
       <directionalLight position={[-6, 5, -4]} intensity={0.4} />
-      <Scene model={model} selected={selected} onSelect={onSelect} roofOpen={roofOpen} />
+      <Scene
+        model={model}
+        selected={selected}
+        onSelect={onSelect}
+        roofOpen={roofOpen}
+        lang={lang}
+      />
       <OrbitControls
         enablePan={false}
         minDistance={5}
@@ -46,11 +54,13 @@ function Scene({
   selected,
   onSelect,
   roofOpen,
+  lang,
 }: {
   model: TwinModel;
   selected: PartKind | null;
   onSelect: (id: PartKind | null) => void;
   roofOpen: number;
+  lang: "en" | "ar";
 }) {
   const [hovered, setHovered] = useState<TwinPart | null>(null);
   const [hw, hh, hd] = model.hall;
@@ -188,7 +198,7 @@ function Scene({
               className="size-2 rounded-full"
               style={{ background: healthMeta[hovered.health].hex }}
             />
-            <span className="t-caption">{hovered.name_en}</span>
+            <span className="t-caption">{lang === "ar" ? hovered.name_ar : hovered.name_en}</span>
           </div>
         </Html>
       ) : null}
