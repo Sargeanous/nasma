@@ -191,6 +191,7 @@ function QuadrantChart({
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="w-full"
+        style={{ direction: "ltr" }}
         role="img"
         aria-label={t(
           "Open tickets plotted by feasibility and impact.",
