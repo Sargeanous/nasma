@@ -5,7 +5,8 @@ import { useDirection } from "@/lib/direction";
 import { BidiText } from "@/lib/bidi";
 import { Card, CardHeader, Chip, Denied } from "@/components/nasma/primitives";
 import { auditTrail, people, permissionMatrix, roleColumns } from "@/data";
-import type { PermissionRow, RoleId } from "@/data/types";
+import type { PermissionRow } from "@/data/fleet";
+import type { RoleId } from "@/data/types";
 
 const groupLabels = {
   maintenance: { en: "Maintenance", ar: "الصيانة" },
